@@ -6,6 +6,7 @@
 
     $router->addRoute('buscar', 'GET', 'apiController', 'buscarVuelo');
     $router->addRoute('vuelos', 'GET', 'apiController', 'getAll');
+    $router->addRoute('vuelos', 'POST', 'apiController', 'insertVuelo');
     $router->setDefaultRoute('controller', 'home');
 
     $resource = $_GET['resource'];

@@ -21,7 +21,6 @@
         function getCityById($city){
             $query = $this->db->prepare('SELECT nombre AS ciudad FROM ciudad WHERE id_ciudad = ?');
             $query->execute([$city]);
-            
             return $query->fetch(PDO::FETCH_OBJ);
         }
 
@@ -35,5 +34,11 @@
             ON  v.ciudad_destino_fk= d.id_ciudad');
             $query->execute([]);
             return $query->fetchAll(PDO::FETCH_OBJ);
+        }
+
+        function insertVuelo($Vuelo,$Fecha,$Origen,$Destino,$Estado){
+            $query = $this->db->prepare('INSERT INTO vuelo (num_vuelo, fechaSalida, ciudad_origen_fk, ciudad_destino_fk, estado) VALUES (?,?,?,?,?) ');
+            $query->execute([$Vuelo,$Fecha,$Origen,$Destino,$Estado]);
+            return $this->db->LastInsertId();
         }
     }

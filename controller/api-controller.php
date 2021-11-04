@@ -24,13 +24,18 @@
             $vuelo = $this->model->searchFly($origen,$destino);
             
             if(!empty($vuelo)){
-                $this->view->response($vuelo);
+                $this->view->response($vuelo,200);
             }
         }
 
         function getAll(){
             $vuelos = $this->model->getAll();
-            $this->view->response($vuelos);
+            $this->view->response($vuelos,200);
         }
 
+        function insertVuelo($params = null){
+            $data = $this->getData();
+
+            $newVuelo = $this->model->insertVuelo($data->Vuelo,$data->Fecha,$data->Origen,$data->Destino,$data->Estado);
+        }
     }
